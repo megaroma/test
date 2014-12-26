@@ -17,14 +17,14 @@ stream_set_timeout($serial->_dHandle, 10);
 
 // To write into
 
-$serial->sendMessage("at\n",1);
+$serial->sendMessage("at\r",1);
 
 // Or to read from
 $read = $serial->readPort();
 
 echo $read;
 
-$serial->sendMessage("at+creg?\n",1);
+$serial->sendMessage("at+creg?\r",1);
 
 // Or to read from
 $read = $serial->readPort();
