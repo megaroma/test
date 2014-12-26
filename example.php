@@ -33,7 +33,7 @@ echo $read;
 
 
 
-$serial->sendMessage("at+cmgf=1?\r",1);
+$serial->sendMessage("at+cmgf=1\r",1);
 
 // Or to read from
 $read = $serial->readPort();
@@ -42,7 +42,7 @@ echo $read;
 
 
 
-$serial->sendMessage("at+cmgl=\"ALL\"?\r",1);
+$serial->sendMessage("at+cmgl=\"ALL\"\r",1);
 
 // Or to read from
 $read = $serial->readPort();
