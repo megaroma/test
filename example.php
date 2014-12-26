@@ -13,7 +13,7 @@ $serial->deviceOpen('w+');
 
 stream_set_timeout($serial->_dHandle, 10);
 
-$serial->confBaudRate(9600);
+//$serial->confBaudRate(9600);
 
 // To write into
 $serial->sendMessage("at+creg?\n\r",1);
