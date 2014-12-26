@@ -12,7 +12,7 @@ $serial->deviceSet("/dev/ttyACM1");
 $serial->deviceOpen();
 
 // To write into
-$serial->sendMessage("at+creg?\n",1);
+$serial->sendMessage("at+creg?\n",0.2);
 
 // Or to read from
 $read = $serial->readPort();
