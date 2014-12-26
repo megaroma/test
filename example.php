@@ -31,6 +31,24 @@ $read = $serial->readPort();
 
 echo $read;
 
+
+
+$serial->sendMessage("at+cmgf=1?\r",1);
+
+// Or to read from
+$read = $serial->readPort();
+
+echo $read;
+
+
+
+$serial->sendMessage("at+cmgl=\"ALL\"?\r",1);
+
+// Or to read from
+$read = $serial->readPort();
+
+echo $read;
+
 // If you want to change the configuration, the device must be closed
 $serial->deviceClose();
 
