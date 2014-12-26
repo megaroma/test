@@ -51,7 +51,7 @@ class phpSerial
 			}
 			else
 			{
-				echo("No stty availible, unable to run.", E_USER_ERROR);
+				echo("No stty availible, unable to run.". E_USER_ERROR);
 			}
 		}
 		elseif(substr($sysname, 0, 7) === "Windows")
@@ -61,7 +61,7 @@ class phpSerial
 		}
 		else
 		{
-			echo("Host OS is neither linux nor windows, unable tu run.", E_USER_ERROR);
+			echo("Host OS is neither linux nor windows, unable tu run.". E_USER_ERROR);
 			exit();
 		}
 	}
@@ -108,12 +108,12 @@ class phpSerial
 				}
 			}
 
-			echo("Specified serial port is not valid", E_USER_WARNING);
+			echo("Specified serial port is not valid". E_USER_WARNING);
 			return false;
 		}
 		else
 		{
-			echo("You must close your device before to set an other one", E_USER_WARNING);
+			echo("You must close your device before to set an other one". E_USER_WARNING);
 			return false;
 		}
 	}
@@ -128,19 +128,19 @@ class phpSerial
 	{
 		if ($this->_dState === SERIAL_DEVICE_OPENED)
 		{
-			echo("The device is already opened", E_USER_NOTICE);
+			echo("The device is already opened". E_USER_NOTICE);
 			return true;
 		}
 
 		if ($this->_dState === SERIAL_DEVICE_NOTSET)
 		{
-			echo("The device must be set before to be open", E_USER_WARNING);
+			echo("The device must be set before to be open". E_USER_WARNING);
 			return false;
 		}
 
 		if (!preg_match("@^[raw]\+?b?$@", $mode))
 		{
-			echo("Invalid opening mode : ".$mode.". Use fopen() modes.", E_USER_WARNING);
+			echo("Invalid opening mode : ".$mode.". Use fopen() modes.". E_USER_WARNING);
 			return false;
 		}
 
@@ -154,7 +154,7 @@ class phpSerial
 		}
 
 		$this->_dHandle = null;
-		echo("Unable to open the device", E_USER_WARNING);
+		echo("Unable to open the device". E_USER_WARNING);
 		return false;
 	}
 
@@ -177,7 +177,7 @@ class phpSerial
 			return true;
 		}
 
-		echo("Unable to close the device", E_USER_ERROR);
+		echo("Unable to close the device". E_USER_ERROR);
 		return false;
 	}
 
@@ -201,7 +201,7 @@ class phpSerial
 	{
 		if ($this->_dState !== SERIAL_DEVICE_SET)
 		{
-			echo("Unable to set the baud rate : the device is either not set or opened", E_USER_WARNING);
+			echo("Unable to set the baud rate : the device is either not set or opened". E_USER_WARNING);
 			return false;
 		}
 
@@ -234,7 +234,7 @@ class phpSerial
 
 			if ($ret !== 0)
 			{
-				echo ("Unable to set baud rate: " . $out[1], E_USER_WARNING);
+				echo ("Unable to set baud rate: " . $out[1]. E_USER_WARNING);
 				return false;
 			}
 		}
@@ -251,7 +251,7 @@ class phpSerial
 	{
 		if ($this->_dState !== SERIAL_DEVICE_SET)
 		{
-			echo("Unable to set parity : the device is either not set or opened", E_USER_WARNING);
+			echo("Unable to set parity : the device is either not set or opened". E_USER_WARNING);
 			return false;
 		}
 
@@ -263,7 +263,7 @@ class phpSerial
 
 		if (!isset($args[$parity]))
 		{
-			echo("Parity mode not supported", E_USER_WARNING);
+			echo("Parity mode not supported". E_USER_WARNING);
 			return false;
 		}
 
@@ -281,7 +281,7 @@ class phpSerial
 			return true;
 		}
 
-		echo("Unable to set parity : " . $out[1], E_USER_WARNING);
+		echo("Unable to set parity : " . $out[1]. E_USER_WARNING);
 		return false;
 	}
 
@@ -295,7 +295,7 @@ class phpSerial
 	{
 		if ($this->_dState !== SERIAL_DEVICE_SET)
 		{
-			echo("Unable to set length of a character : the device is either not set or opened", E_USER_WARNING);
+			echo("Unable to set length of a character : the device is either not set or opened". E_USER_WARNING);
 			return false;
 		}
 
@@ -317,7 +317,7 @@ class phpSerial
 			return true;
 		}
 
-		echo("Unable to set character length : " .$out[1], E_USER_WARNING);
+		echo("Unable to set character length : " .$out[1]. E_USER_WARNING);
 		return false;
 	}
 
@@ -332,13 +332,13 @@ class phpSerial
 	{
 		if ($this->_dState !== SERIAL_DEVICE_SET)
 		{
-			echo("Unable to set the length of a stop bit : the device is either not set or opened", E_USER_WARNING);
+			echo("Unable to set the length of a stop bit : the device is either not set or opened". E_USER_WARNING);
 			return false;
 		}
 
 		if ($length != 1 and $length != 2 and $length != 1.5 and !($length == 1.5 and $this->_os === "linux"))
 		{
-			echo("Specified stop bit length is invalid", E_USER_WARNING);
+			echo("Specified stop bit length is invalid". E_USER_WARNING);
 			return false;
 		}
 
@@ -356,7 +356,7 @@ class phpSerial
 			return true;
 		}
 
-		echo("Unable to set stop bit length : " . $out[1], E_USER_WARNING);
+		echo("Unable to set stop bit length : " . $out[1]. E_USER_WARNING);
 		return false;
 	}
 
@@ -373,7 +373,7 @@ class phpSerial
 	{
 		if ($this->_dState !== SERIAL_DEVICE_SET)
 		{
-			echo("Unable to set flow control mode : the device is either not set or opened", E_USER_WARNING);
+			echo("Unable to set flow control mode : the device is either not set or opened". E_USER_WARNING);
 			return false;
 		}
 
@@ -389,7 +389,7 @@ class phpSerial
 		);
 
 		if ($mode !== "none" and $mode !== "rts/cts" and $mode !== "xon/xoff") {
-			echo("Invalid flow control mode specified", E_USER_ERROR);
+			echo("Invalid flow control mode specified". E_USER_ERROR);
 			return false;
 		}
 
@@ -400,7 +400,7 @@ class phpSerial
 
 		if ($ret === 0) return true;
 		else {
-			echo("Unable to set flow control : " . $out[1], E_USER_ERROR);
+			echo("Unable to set flow control : " . $out[1]. E_USER_ERROR);
 			return false;
 		}
 	}
@@ -423,12 +423,12 @@ class phpSerial
 
 		if ($return{0} === "I")
 		{
-			echo("setserial: Invalid flag", E_USER_WARNING);
+			echo("setserial: Invalid flag". E_USER_WARNING);
 			return false;
 		}
 		elseif ($return{0} === "/")
 		{
-			echo("setserial: Error with device file", E_USER_WARNING);
+			echo("setserial: Error with device file". E_USER_WARNING);
 			return false;
 		}
 		else
@@ -471,7 +471,7 @@ class phpSerial
 	{
 		if ($this->_dState !== SERIAL_DEVICE_OPENED)
 		{
-			echo("Device must be opened to read it", E_USER_WARNING);
+			echo("Device must be opened to read it". E_USER_WARNING);
 			return false;
 		}
 
@@ -500,7 +500,7 @@ class phpSerial
 			/* Do nohting : not implented yet */
 		}
 
-		echo("Reading serial port is not implemented for Windows", E_USER_WARNING);
+		echo("Reading serial port is not implemented for Windows". E_USER_WARNING);
 		return false;
 	}
 
@@ -521,7 +521,7 @@ class phpSerial
 		else
 		{
 			$this->_buffer = "";
-			echo("Error while sending message", E_USER_WARNING);
+			echo("Error while sending message". E_USER_WARNING);
 			return false;
 		}
 	}
@@ -538,7 +538,7 @@ class phpSerial
 	{
 		if ($this->_dState !== SERIAL_DEVICE_OPENED)
 		{
-			echo("Device must be opened", E_USER_WARNING);
+			echo("Device must be opened". E_USER_WARNING);
 			return false;
 		}
 
@@ -549,7 +549,7 @@ class phpSerial
 	{
 		if ($this->_dState !== SERIAL_DEVICE_CLOSED)
 		{
-			echo("Device must be closed", E_USER_WARNING);
+			echo("Device must be closed". E_USER_WARNING);
 			return false;
 		}
 
