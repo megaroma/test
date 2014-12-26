@@ -9,19 +9,25 @@ $serial = new phpSerial;
 $serial->deviceSet("/dev/ttyACM1");
 
 // Then we need to open it
-$serial->deviceOpen();
+$serial->deviceOpen('w+');
+
+stream_set_timeout($serial->_dHandle, 10);
+
+$serial->confBaudRate(9600);
 
 // To write into
-$serial->sendMessage("at+creg?\n",0.2);
+$serial->sendMessage("at+creg?\n\r",1);
 
 // Or to read from
 $read = $serial->readPort();
+
+echo $read;
 
 // If you want to change the configuration, the device must be closed
 $serial->deviceClose();
 
 // We can change the baud rate
-$serial->confBaudRate(2400);
+//$serial->confBaudRate(2400);
 
 // etc...
 ?>
