@@ -16,6 +16,14 @@ stream_set_timeout($serial->_dHandle, 10);
 //$serial->confBaudRate(9600);
 
 // To write into
+
+$serial->sendMessage("at\n\r",1);
+
+// Or to read from
+$read = $serial->readPort();
+
+echo $read;
+
 $serial->sendMessage("at+creg?\n\r",1);
 
 // Or to read from
